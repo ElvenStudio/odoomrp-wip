@@ -17,6 +17,9 @@
 ##############################################################################
 
 from openerp import fields, models, api
+import logging
+
+_logger = logging.getLogger(__name__)
 
 
 class StockQuant(models.Model):
@@ -26,9 +29,14 @@ class StockQuant(models.Model):
     @api.multi
     def _get_variant_inventory_value(self):
         self.ensure_one()
-        if self.product_id.cost_method in ('real'):
-            return self.cost * self.qty
-        return self.product_id.cost_price * self.qty
+        if self.product_id:
+            if self.product_id.cost_method in ('real'):
+                return self.cost * self.qty
+            return self.product_id.cost_price * self.qty
+        else:
+            _logger.warning("No invetory available")
+            return 0
+
 
     @api.one
     @api.depends("product_id", "product_id.cost_price", "qty",
