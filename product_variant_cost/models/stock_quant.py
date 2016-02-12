@@ -70,6 +70,7 @@ class StockMove(models.Model):
 
     @api.multi
     def product_price_update_before_done(self):
+        super(StockMove, self).product_price_update_before_done()
         for move in self:
             if ((move.location_id.usage == 'supplier') and
                     (move.product_id.cost_method == 'average')):
