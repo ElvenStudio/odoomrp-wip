@@ -16,7 +16,7 @@
 #
 ##############################################################################
 
-from openerp import fields, models
+from openerp import fields, models, api
 from openerp.addons import decimal_precision as dp
 
 
@@ -27,3 +27,14 @@ class ProductProduct(models.Model):
     cost_price = fields.Float(
         string="Variant Cost Price", digits=dp.get_precision('Product Price'),
         groups="base.group_user", company_dependent=True)
+
+    @api.multi
+    def write(self, vals):
+        res = super(ProductProduct, self).write(vals)
+
+        if 'standard_price' in vals:
+            res &= super(ProductProduct, self).write({'cost_price': vals['standard_price']})
+        elif 'cost_price' in vals:
+            res &= super(ProductProduct, self).write({'standard_price': vals['cost_price']})
+
+        return res
