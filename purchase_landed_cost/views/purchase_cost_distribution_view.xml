@@ -99,6 +99,24 @@
                                 type="object"
                                 confirm="Are you sure that you want to update product prices?"
                                 class="oe_highlight" />
+						<button name="action_force_product_previous_cost"
+                                string="Force Previous Product Cost"
+                                states="calculated,done,error"
+                                type="object"
+                                confirm="Are you sure that you want to reset the old product prices?"
+                                class="oe_highlight" />
+						<button name="action_force_previous_cost"
+                                string="Force Previous Cost"
+                                states="calculated,done,error"
+                                type="object"
+                                confirm="Are you sure that you want to force the previous cost?"
+                                class="oe_highlight" />
+						<button name="action_force_new_cost"
+                                string="Force New Cost"
+                                states="calculated,done,error"
+                                type="object"
+                                confirm="Are you sure that you want to force the new cost?"
+                                class="oe_highlight" />
 						<button name="action_draft"
                                 string="Cancel"
                                 states="calculated,error"
@@ -142,6 +160,7 @@
 										<field name="total_amount" />
 										<field name="expense_amount" />
 										<field name="cost_ratio" />
+										<field name="product_standard_price_old" />
 										<field name="standard_price_old" />
 										<field name="standard_price_new" />
 									</tree>

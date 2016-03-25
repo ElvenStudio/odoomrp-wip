@@ -14,8 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: it\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: \n"
 
 #. module: purchase_landed_cost
 #: model:ir.actions.act_window,help:purchase_landed_cost.action_purchase_cost_distribution
@@ -48,69 +47,96 @@ msgid ""
 "\t\t\t\t<p>\n"
 "\t\t\t\t\tDefine the type of the calculation of each purchase expense\n"
 "                    used for calculating the distribution between lines.\n"
-"\t\t\t\t</p>\n"
-"\t\t\t"
-msgstr ""
+"				</p>\n"
+"			"
+msgstr "<p class=\"oe_view_nocontent_create\">\n"
+"					Click to create a new expense type.\n"
+"				</p>\n"
+"				<p>\n"
+"					Use this menu to create types of purchase expenses.\n"
+"					The types marked by default will be added to the cost\n"
+"					distribution automatically.\n"
+"				</p>\n"
+"				<p>\n"
+"					Define the type of the calculation of each purchase expense\n"
+"                    used for calculating the distribution between lines.\n"
+"				</p>\n"
+"			"
 
 #. module: purchase_landed_cost
 #: field:purchase.cost.distribution.expense,affected_lines:0
 msgid "Affected lines"
-msgstr ""
+msgstr "Linee Coinvolte"
+
+#. module: purchase_landed_cost
+#: view:purchase.cost.distribution:purchase_landed_cost.purchase_cost_distribution_form
+msgid "Are you sure that you want to force the new cost?"
+msgstr "Sei sicuro di voler impostare il nuovo prezzo calcolato?"
+
+#. module: purchase_landed_cost
+#: view:purchase.cost.distribution:purchase_landed_cost.purchase_cost_distribution_form
+msgid "Are you sure that you want to force the previous cost?"
+msgstr "Sei sicuro di voler impostare il prezzo di acquisto dei prodotti?"
+
+#. module: purchase_landed_cost
+#: view:purchase.cost.distribution:purchase_landed_cost.purchase_cost_distribution_form
+msgid "Are you sure that you want to reset the old product prices?"
+msgstr "Sei sicuro di voler reimpostare il precedente prezzo dei prodotti?"
 
 #. module: purchase_landed_cost
 #: view:purchase.cost.distribution:purchase_landed_cost.purchase_cost_distribution_form
 msgid "Are you sure that you want to update product prices?"
-msgstr ""
+msgstr "Sei sicuro di voler aggiornare il prezzo dei prodotti?"
 
 #. module: purchase_landed_cost
 #: selection:purchase.expense.type,calculation_method:0
 msgid "By amount of the line"
-msgstr ""
+msgstr "Per totale della linea"
 
 #. module: purchase_landed_cost
 #: selection:purchase.expense.type,calculation_method:0
 msgid "By product price"
-msgstr ""
+msgstr "Per prezzo"
 
 #. module: purchase_landed_cost
 #: selection:purchase.expense.type,calculation_method:0
 msgid "By product quantity"
-msgstr ""
+msgstr "Per quantità"
 
 #. module: purchase_landed_cost
 #: selection:purchase.expense.type,calculation_method:0
 msgid "By product volume"
-msgstr ""
+msgstr "Per volume del prodotto"
 
 #. module: purchase_landed_cost
 #: selection:purchase.expense.type,calculation_method:0
 msgid "By product weight"
-msgstr ""
+msgstr "Per peso del prodotto"
 
 #. module: purchase_landed_cost
 #: selection:purchase.expense.type,calculation_method:0
 msgid "By product weight net"
-msgstr ""
+msgstr "Per peso netto del prodotto"
 
 #. module: purchase_landed_cost
 #: view:purchase.cost.distribution:purchase_landed_cost.purchase_cost_distribution_form
 msgid "Calculate"
-msgstr ""
+msgstr "Calcola"
 
 #. module: purchase_landed_cost
 #: selection:purchase.cost.distribution,state:0
 msgid "Calculated"
-msgstr ""
+msgstr "Calcolato"
 
 #. module: purchase_landed_cost
 #: view:purchase.cost.distribution.line:purchase_landed_cost.view_purchase_cost_distribution_line_form
 msgid "Calculated Cost"
-msgstr ""
+msgstr "Costo Calcolato"
 
 #. module: purchase_landed_cost
 #: field:purchase.expense.type,calculation_method:0
 msgid "Calculation method"
-msgstr ""
+msgstr "Metodo di calcolo"
 
 #. module: purchase_landed_cost
 #: view:import.invoice.line.wizard:purchase_landed_cost.import_invoice_line_wizard_view
@@ -118,13 +144,13 @@ msgstr ""
 #: view:purchase.cost.distribution:purchase_landed_cost.purchase_cost_distribution_form
 #: selection:purchase.cost.distribution,state:0
 msgid "Cancel"
-msgstr ""
+msgstr "Annulla"
 
 #. module: purchase_landed_cost
 #: field:purchase.cost.distribution,company_id:0
 #: field:purchase.expense.type,company_id:0
 msgid "Company"
-msgstr ""
+msgstr "Azienda"
 
 #. module: purchase_landed_cost
 #: view:purchase.cost.distribution.line:purchase_landed_cost.view_purchase_cost_distribution_line_form
@@ -134,14 +160,14 @@ msgstr ""
 #. module: purchase_landed_cost
 #: field:purchase.cost.distribution,cost_update_type:0
 msgid "Cost Update Type"
-msgstr ""
+msgstr "Tipo di aggiornamento del costo"
 
 #. module: purchase_landed_cost
 #: view:purchase.cost.distribution:purchase_landed_cost.purchase_cost_distribution_form
 #: field:purchase.cost.distribution.expense,distribution:0
 #: field:purchase.cost.distribution.line,distribution:0
 msgid "Cost distribution"
-msgstr ""
+msgstr "Distribuzione del costo"
 
 #. module: purchase_landed_cost
 #: view:purchase.cost.distribution:purchase_landed_cost.purchase_cost_distribution_form
@@ -151,7 +177,7 @@ msgstr ""
 #. module: purchase_landed_cost
 #: field:purchase.cost.distribution.line.expense,distribution_line:0
 msgid "Cost distribution line"
-msgstr ""
+msgstr "Linea di distribuzione del costo"
 
 #. module: purchase_landed_cost
 #: view:purchase.cost.distribution.line:purchase_landed_cost.view_purchase_cost_distribution_line_form
@@ -195,7 +221,7 @@ msgstr ""
 #: field:purchase.cost.distribution.line.expense,create_uid:0
 #: field:purchase.expense.type,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Creato da"
 
 #. module: purchase_landed_cost
 #: field:import.invoice.line.wizard,create_date:0
@@ -206,7 +232,7 @@ msgstr ""
 #: field:purchase.cost.distribution.line.expense,create_date:0
 #: field:purchase.expense.type,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Creato il"
 
 #. module: purchase_landed_cost
 #: field:purchase.cost.distribution,date:0
@@ -298,7 +324,23 @@ msgid "Expenses types"
 msgstr ""
 
 #. module: purchase_landed_cost
-#: field:import.invoice.line.wizard,id:0 field:picking.import.wizard,id:0
+#: view:purchase.cost.distribution:purchase_landed_cost.purchase_cost_distribution_form
+msgid "Force New Cost"
+msgstr "Force New Cost"
+
+#. module: purchase_landed_cost
+#: view:purchase.cost.distribution:purchase_landed_cost.purchase_cost_distribution_form
+msgid "Force Previous Cost"
+msgstr "Force Previous Cost"
+
+#. module: purchase_landed_cost
+#: view:purchase.cost.distribution:purchase_landed_cost.purchase_cost_distribution_form
+msgid "Force Previous Product Cost"
+msgstr "Force Previous Product Cost"
+
+#. module: purchase_landed_cost
+#: field:import.invoice.line.wizard,id:0
+#: field:picking.import.wizard,id:0
 #: field:purchase.cost.distribution,id:0
 #: field:purchase.cost.distribution.expense,id:0
 #: field:purchase.cost.distribution.line,id:0
@@ -446,12 +488,17 @@ msgstr ""
 #. module: purchase_landed_cost
 #: field:purchase.cost.distribution.line,product_id:0
 msgid "Product"
-msgstr "Prodotto "
+msgstr "Prodotto"
+
+#. module: purchase_landed_cost
+#: field:purchase.cost.distribution.line,product_standard_price_old:0
+msgid "Product Previous Cost"
+msgstr "Product Previous Cost"
 
 #. module: purchase_landed_cost
 #: view:purchase.cost.distribution.line:purchase_landed_cost.view_purchase_cost_distribution_line_form
 msgid "Product information"
-msgstr ""
+msgstr "Informazioni Prodotto"
 
 #. module: purchase_landed_cost
 #: view:purchase.cost.distribution.line:purchase_landed_cost.view_purchase_cost_distribution_line_form
@@ -461,19 +508,19 @@ msgstr ""
 #. module: purchase_landed_cost
 #: model:ir.model,name:purchase_landed_cost.model_purchase_order
 msgid "Purchase Order"
-msgstr ""
+msgstr "Ordine d'Acquisto"
 
 #. module: purchase_landed_cost
 #: view:purchase.cost.distribution:purchase_landed_cost.purchase_cost_distribution_form
 #: view:purchase.cost.distribution:purchase_landed_cost.view_purchase_cost_distribution_calendar
 #: view:purchase.cost.distribution:purchase_landed_cost.view_purchase_cost_distribution_graph
 msgid "Purchase cost distribution"
-msgstr ""
+msgstr "Distribuzione dei costi di acquisto"
 
 #. module: purchase_landed_cost
 #: model:ir.model,name:purchase_landed_cost.model_purchase_cost_distribution_line
 msgid "Purchase cost distribution Line"
-msgstr ""
+msgstr "Linea di distribuzione dei costi di acquisto"
 
 #. module: purchase_landed_cost
 #: model:ir.model,name:purchase_landed_cost.model_purchase_cost_distribution_expense
@@ -490,32 +537,32 @@ msgstr ""
 #: model:ir.ui.menu,name:purchase_landed_cost.menu_purchase_cost_distribution
 #: view:purchase.cost.distribution:purchase_landed_cost.view_purchase_cost_distribution_tree
 msgid "Purchase cost distributions"
-msgstr ""
+msgstr "Distribuzioni dei costi di acquisto"
 
 #. module: purchase_landed_cost
 #: model:ir.model,name:purchase_landed_cost.model_purchase_expense_type
 msgid "Purchase cost type"
-msgstr ""
+msgstr "Tipo di costi di acquisto"
 
 #. module: purchase_landed_cost
 #: view:purchase.expense.type:purchase_landed_cost.purchase_expense_type_tree
 msgid "Purchase expense types"
-msgstr ""
+msgstr "Tipi di costi di acquisto"
 
 #. module: purchase_landed_cost
 #: view:purchase.cost.distribution.line:purchase_landed_cost.view_purchase_cost_distribution_line_form
 msgid "Purchase information"
-msgstr ""
+msgstr "Informazioni di acquisto"
 
 #. module: purchase_landed_cost
 #: model:ir.model,name:purchase_landed_cost.model_purchase_cost_distribution
 msgid "Purchase landed costs distribution"
-msgstr ""
+msgstr "Distribuzione dei costi di acquisto"
 
 #. module: purchase_landed_cost
 #: field:purchase.cost.distribution.line,purchase_id:0
 msgid "Purchase order"
-msgstr ""
+msgstr "Ordine d'Acquisto"
 
 #. module: purchase_landed_cost
 #: help:purchase.cost.distribution.expense,affected_lines:0
@@ -527,17 +574,17 @@ msgstr ""
 #. module: purchase_landed_cost
 #: field:purchase.cost.distribution.line,product_qty:0
 msgid "Quantity"
-msgstr ""
+msgstr "Quantità"
 
 #. module: purchase_landed_cost
 #: view:purchase.cost.distribution:purchase_landed_cost.purchase_cost_distribution_form
 msgid "Recalculate"
-msgstr ""
+msgstr "Ricalcola"
 
 #. module: purchase_landed_cost
 #: field:purchase.cost.distribution.expense,ref:0
 msgid "Reference"
-msgstr ""
+msgstr "Riferimento"
 
 #. module: purchase_landed_cost
 #: view:purchase.cost.distribution:purchase_landed_cost.purchase_cost_distribution_search
@@ -564,18 +611,18 @@ msgstr ""
 #. module: purchase_landed_cost
 #: field:purchase.cost.distribution,state:0
 msgid "Status"
-msgstr ""
+msgstr "Stato"
 
 #. module: purchase_landed_cost
 #: field:import.invoice.line.wizard,supplier:0
 #: field:picking.import.wizard,supplier:0
 msgid "Supplier"
-msgstr ""
+msgstr "Fornitore"
 
 #. module: purchase_landed_cost
 #: field:purchase.cost.distribution.expense,invoice_line:0
 msgid "Supplier invoice line"
-msgstr ""
+msgstr "Linea fattura Fornitore"
 
 #. module: purchase_landed_cost
 #: help:purchase.cost.distribution.line,total_weight:0
@@ -608,31 +655,31 @@ msgstr ""
 #. module: purchase_landed_cost
 #: view:purchase.cost.distribution.line:purchase_landed_cost.view_purchase_cost_distribution_line_form
 msgid "Total Expenses"
-msgstr ""
+msgstr "Spese totali"
 
 #. module: purchase_landed_cost
 #: field:purchase.cost.distribution.line.expense,cost_ratio:0
 msgid "Unit cost"
-msgstr ""
+msgstr "Costo unitario"
 
 #. module: purchase_landed_cost
 #: view:purchase.cost.distribution:purchase_landed_cost.purchase_cost_distribution_form
 msgid "Update Cost"
-msgstr ""
+msgstr "Aggiorna Costo"
 
 #. module: purchase_landed_cost
 #: view:purchase.cost.distribution.line:purchase_landed_cost.view_purchase_cost_distribution_line_form
 msgid "Warehouse information"
-msgstr ""
+msgstr "Informazioni Magazzino"
 
 #. module: purchase_landed_cost
 #: code:addons/purchase_landed_cost/models/purchase_cost_distribution.py:140
 #, python-format
 msgid "You can't delete a confirmed cost distribution"
-msgstr ""
+msgstr "Non puoi cancellare una distribuzione dei costi confermata"
 
 #. module: purchase_landed_cost
 #: view:import.invoice.line.wizard:purchase_landed_cost.import_invoice_line_wizard_view
 #: view:picking.import.wizard:purchase_landed_cost.picking_import_wizard_view
 msgid "or"
-msgstr ""
+msgstr "o"

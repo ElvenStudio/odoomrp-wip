@@ -15,9 +15,11 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
+import logging
 from openerp import models, fields, exceptions, api, _
 import openerp.addons.decimal_precision as dp
+
+_log = logging.getLogger(__name__)
 
 
 class PurchaseCostDistribution(models.Model):
@@ -225,6 +227,7 @@ class PurchaseCostDistribution(models.Model):
             distribution.state = 'calculated'
         return True
 
+    @api.one
     def _product_price_update(self, move, new_price):
         """Method that mimicks stock.move's product_price_update_before_done
         method behaviour, but taking into account that calculations are made
@@ -234,23 +237,39 @@ class PurchaseCostDistribution(models.Model):
                 move.product_id.cost_method == 'average'):
             product = move.product_id
             qty_available = product.product_tmpl_id.qty_available
-            product_avail = qty_available - move.product_qty
-            if product_avail <= 0:
+            previous_qty = qty_available - move.product_qty
+            cost = move.product_id.standard_price
+
+            if previous_qty <= 0 or cost <= 0:
                 new_std_price = new_price
             else:
-                domain_quant = [
-                    ('product_id', 'in',
-                     product.product_tmpl_id.product_variant_ids.ids),
-                    ('id', 'not in', move.quant_ids.ids)]
-                quants = self.env['stock.quant'].read_group(
-                    domain_quant, ['product_id', 'qty', 'cost'], [])[0]
                 # Get the standard price
-                new_std_price = ((quants['cost'] * quants['qty'] +
-                                  new_price * move.product_qty) /
-                                 qty_available)
+                new_std_price = ((cost * previous_qty + new_price * move.product_qty) / qty_available)
+
             # Write the standard price, as SUPERUSER_ID, because a
             # warehouse manager may not have the right to write on products
             product.sudo().write({'standard_price': new_std_price})
+
+    @api.one
+    def action_force_product_previous_cost(self):
+        if self.cost_update_type == 'direct':
+            for line in self.cost_lines:
+                line.product_id.sudo().write({'standard_price': line.product_standard_price_old})
+        return True
+
+    @api.one
+    def action_force_new_cost(self):
+        if self.cost_update_type == 'direct':
+            for line in self.cost_lines:
+                line.product_id.sudo().write({'standard_price': line.standard_price_new})
+        return True
+
+    @api.one
+    def action_force_previous_cost(self):
+        if self.cost_update_type == 'direct':
+            for line in self.cost_lines:
+                line.product_id.sudo().write({'standard_price': line.standard_price_old})
+        return True
 
     @api.one
     def action_done(self):
@@ -335,6 +354,12 @@ class PurchaseCostDistributionLine(models.Model):
             self.move_id.product_qty)
 
     @api.one
+    @api.depends('move_id')
+    def _compute_product_standard_price_old(self):
+        self.product_standard_price_old = \
+            self.product_id.standard_price or self.product_id.product_tmpl_id.standard_price or 0.0
+
+    @api.one
     @api.depends('move_id', 'move_id.product_id')
     def _get_product_id(self):
         # Cannot be done via related field due to strange bug in update chain
@@ -399,6 +424,9 @@ class PurchaseCostDistributionLine(models.Model):
     product_weight_net = fields.Float(
         string='Net weight', related='product_id.product_tmpl_id.weight_net',
         help="The net weight in Kg.")
+    product_standard_price_old = fields.Float(
+        string="Product Previous Cost", digits_compute=dp.get_precision('Product Price'),
+        compute='_compute_product_standard_price_old', store=True)
     standard_price_old = fields.Float(
         string='Previous cost', compute="_get_standard_price_old", store=True,
         digits_compute=dp.get_precision('Product Price'))
