@@ -163,6 +163,8 @@ class PurchaseCostDistribution(models.Model):
             # Calculating expense line
             for line in distribution.cost_lines:
                 line.expense_lines.unlink()
+
+                expense_lines = []
                 for expense in distribution.expense_lines:
                     if (expense.affected_lines and
                             line.id not in expense.affected_lines.ids):
@@ -170,60 +172,56 @@ class PurchaseCostDistribution(models.Model):
                     if expense.type.calculation_method == 'amount':
                         multiplier = line.total_amount
                         if expense.affected_lines:
-                            divisor = sum([x.total_amount for x in
-                                           expense.affected_lines])
+                            divisor = sum([x.total_amount for x in expense.affected_lines])
                         else:
                             divisor = distribution.total_purchase
                     elif expense.type.calculation_method == 'price':
                         multiplier = line.product_price_unit
                         if expense.affected_lines:
-                            divisor = sum([x.product_price_unit for x in
-                                           expense.affected_lines])
+                            divisor = sum([x.product_price_unit for x in expense.affected_lines])
                         else:
                             divisor = distribution.total_price_unit
                     elif expense.type.calculation_method == 'qty':
                         multiplier = line.product_qty
                         if expense.affected_lines:
-                            divisor = sum([x.product_qty for x in
-                                           expense.affected_lines])
+                            divisor = sum([x.product_qty for x in expense.affected_lines])
                         else:
                             divisor = distribution.total_uom_qty
                     elif expense.type.calculation_method == 'weight':
                         multiplier = line.total_weight
                         if expense.affected_lines:
-                            divisor = sum([x.total_weight for x in
-                                           expense.affected_lines])
+                            divisor = sum([x.total_weight for x in expense.affected_lines])
                         else:
                             divisor = distribution.total_weight
                     elif expense.type.calculation_method == 'weight_net':
                         multiplier = line.total_weight_net
                         if expense.affected_lines:
-                            divisor = sum([x.total_weight_net for x in
-                                           expense.affected_lines])
+                            divisor = sum([x.total_weight_net for x in expense.affected_lines])
                         else:
                             divisor = distribution.total_weight_net
                     elif expense.type.calculation_method == 'volume':
                         multiplier = line.total_volume
                         if expense.affected_lines:
-                            divisor = sum([x.total_volume for x in
-                                           expense.affected_lines])
+                            divisor = sum([x.total_volume for x in expense.affected_lines])
                         else:
                             divisor = distribution.total_volume
                     elif expense.type.calculation_method == 'equal':
                         multiplier = 1
-                        divisor = (len(expense.affected_lines) or
-                                   len(distribution.cost_lines))
+                        divisor = (len(expense.affected_lines) or len(distribution.cost_lines))
                     else:
-                        raise exceptions.Warning(
-                            _('No valid distribution type.'))
-                    expense_amount = (expense.expense_amount * multiplier /
-                                      divisor)
+                        raise exceptions.Warning(_('No valid distribution type.'))
+
+                    expense_amount = (expense.expense_amount * multiplier / divisor)
+
                     expense_line = {
                         'distribution_expense': expense.id,
                         'expense_amount': expense_amount,
                         'cost_ratio': expense_amount / line.product_qty,
                     }
-                    line.expense_lines = [(0, 0, expense_line)]
+                    expense_lines.append(expense_line)
+
+                line.expense_lines = [(0, 0, expense_line) for expense_line in expense_lines]
+
             distribution.state = 'calculated'
         return True
 
